@@ -1,0 +1,4 @@
+body {
+    /* Poppins is the primary font, with system fonts as fallbacks */
+    font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
+}
