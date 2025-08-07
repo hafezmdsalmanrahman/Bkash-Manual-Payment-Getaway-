@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bKash Payment</title>
+
+    <!-- Tailwind Config for Dark Mode -->
+    <script>
+        tailwind.config = {
+          darkMode: 'media', 
+        }
+    </script>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins (for English) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Universal Style -->
+    <style>
+        body {
+            /* Poppins is the primary font */
+            font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen p-4 sm:p-8 md:py-12">
+
+    <div class="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+        
+        <header class="bg-pink-600 p-4">
+            <h1 class="text-white text-center text-xl font-bold tracking-wide">bKash Payment</h1>
+        </header>
+        
+        <form action="https://formsubmit.co/7cb75a2ce1c23d4f40c6624c8260f182" method="POST" class="p-6">
+            <!-- Formsubmit.co settings -->
+            <input type="hidden" name="_subject" value="New bKash Payment Received!">
+            <input type="hidden" name="_autoresponse" value="Thank you for your submission! We have received your payment details and are currently verifying it. You will be notified shortly.">
+            <input type="hidden" name="_template" value="table">
+            
+            <!-- The form will redirect to this link after submission -->
+            <input type="hidden" name="_next" value="https://your-website.com/thank-you.html">
+            
+            <div class="flex items-center justify-center mb-5">
+                <img src="https://i.ibb.co/1YHwZ6RR/BKash-b-Kash-Logo-wine.png" alt="bKash Logo" style="height: 100px;">
+            </div>
+            
+            <div class="flex justify-between items-center border-t border-b border-gray-200 dark:border-gray-700 py-3 mb-6">
+                <span class="text-gray-700 dark:text-gray-300 font-semibold text-lg">Order Details</span>
+                <span class="text-gray-900 dark:text-white font-bold text-lg">Tk 1000</span>
+            </div>
+
+            <div class="bg-pink-600 text-white p-5 rounded-lg">
+                <h3 class="text-lg font-bold text-center mb-4">Enter Transaction ID</h3>
+                
+                <input type="text" name="Transaction_ID" placeholder="Enter your Transaction ID here" class="w-full p-3 rounded-md text-gray-800 bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-400 transition" required>
+                <input type="hidden" name="Amount" value="Tk 1000">
+                <input type="hidden" name="Payment_For" value="General Service Payment">
+
+                <ul class="mt-5 space-y-3.5 text-sm">
+                    <li><span class="mr-2">•</span>Dial *247# or go to the bKash App and tap on "Send Money".</li>
+                    <li>
+                        <span class="mr-2">•</span>Recipient Number:
+                        <div class="relative bg-pink-700/80 p-2.5 rounded-md mt-1.5 flex justify-between items-center">
+                           <span id="payment-number" class="font-bold tracking-wider text-base">01XXXXXXXXX</span>
+                           <button type="button" id="copy-button" class="text-white hover:bg-pink-500 p-2 rounded-md transition -mr-1">
+                               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                           </button>
+                           <!-- Tooltip for copy confirmation -->
+                           <div id="copy-tooltip" class="absolute right-0 bottom-full mb-2 hidden w-auto rounded-md bg-gray-800 px-3 py-1.5 text-center text-sm text-white">
+                               Number copied!
+                           </div>
+                        </div>
+                    </li>
+                    <li><span class="mr-2">•</span>Amount: <span class="font-bold">1000 </span></li>
+                    <li><span class="mr-2">•</span>Now, enter your Transaction ID in the box above and click the "Confirm" button below.</li>
+                </ul>
+            </div>
+            
+            <div class="mt-6 flex gap-4">
+                <button type="button" class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 font-bold py-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition" onclick="window.history.back();">Cancel</button>
+                <button type="submit" class="w-full bg-pink-600 text-white font-bold py-3 rounded-lg hover:bg-pink-700 transition">Confirm</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // --- Logic for the Copy Button tooltip ---
+        const copyButton = document.getElementById('copy-button');
+        const tooltip = document.getElementById('copy-tooltip');
+        
+        copyButton.addEventListener('click', () => {
+            const paymentNumber = document.getElementById('payment-number').innerText;
+            navigator.clipboard.writeText(paymentNumber).then(() => {
+                // Show the tooltip
+                tooltip.classList.remove('hidden');
+                
+                // Hide the tooltip after 2 seconds
+                setTimeout(() => { 
+                    tooltip.classList.add('hidden'); 
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
